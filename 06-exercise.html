@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06 Exercise</title>
+</head>
+<body>
+  <button onclick="heads()">Heads</button>
+  <button onclick="tails()">Tails</button>
+  
+  <script>    
+    function heads(){
+      const random = Math.random();
+      let result = random < 0.5 ? 'HEADS' : 'TAILS';                  
+      let status = result === 'HEADS' ? 'YOU WIN!' : 'YOU LOSE!';      
+      console.log(`The result of coinflip is ${result}\nYour guess is HEADS\n${status}\n`);
+    }
+
+    function tails(){
+      const random = Math.random();
+      let result = random < 0.5 ? 'HEADS' : 'TAILS';                  
+      let status = result === 'TAILS' ? 'YOU WIN!' : 'YOU LOSE!';      
+      console.log(`The result of coinflip is ${result}\nYour guess is TAILS\n${status}\n`);
+    }    
+  </script>
+</body>
+</html>
