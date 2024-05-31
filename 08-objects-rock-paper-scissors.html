@@ -10,9 +10,23 @@
   <button onclick="playGame('rock')">Rock</button>
   <button onclick="playGame('paper')">Paper</button>
   <button onclick="playGame('scissors')">Scissors</button>
+  <button onclick="resetScore()">Reset Score</button>
   
   <script>
-    // If possible dont use global variable to avoid conflict        
+    // If possible dont use global variable to avoid conflict
+
+    // get the score json from local storage then convert it back to object
+    // then store it to score variable
+    // used let to reassign a default value (zeros) if it is deleted from local storage
+    // used default operator to add a defaul value if the score is null
+    let score = JSON.parse(localStorage.getItem('score')) || 
+    {
+      wins: 0,
+      losses: 0,
+      ties: 0
+    };
+    
+    
     function computerMoves(){
       let computerMove = ''; // best practice to keep variable inside a scope
       const randomNumber = Math.random();      
@@ -25,6 +39,7 @@
       }      
       return computerMove;
     }
+
     function playGame(move){ // avoid putting too many parameters
       const computerMove = computerMoves(); 
       let result = '';
@@ -52,40 +67,30 @@
         } else if (computerMove === 'scissors'){
           result = 'Tie';
         }
-      }      
-      alert(`You picked ${move}. Computer picked ${computerMove}. ${result}`)
-    }    
+      }
 
-    const age = 22;
-    // If else statement
-    if (age >= 18){
-      console.log('Adult');
-    } else {
-      console.log('Minor');
+      if (result === 'You win'){
+        score.wins++;
+      } else if (result === 'You lose'){
+        score.losses++;
+      } else if (result === 'Tie'){
+        score.ties++;
+      }    
+      // convert score object to json then save to local storage
+      localStorage.setItem('score', JSON.stringify(score));
+      alert(`
+        You picked ${move}. Computer picked ${computerMove}. ${result}
+        Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}
+      `);      
     }
-    // Ternary Operator ?:
-    const checkAge = age >= 18 ?  'Adult' : 'Minor';
-    console.log(checkAge);    
-
-    const isActive = true;
-    // If statement
-    if (isActive){
-      console.log('You are online');
+    
+    function resetScore(){
+      score.wins = 0;
+      score.losses = 0;
+      score.ties = 0;
+      localStorage.removeItem('score'); //remove from local storage
+      alert('The scores has been reset');
     }
-    //Guard Operator &&
-    const isOnline = isActive && 'You are online';
-    console.log(isOnline);
-
-    const answer = 'I have answer';
-    // If else statement
-    if (!answer){
-      console.log('N.A');
-    } else {
-      console.log(answer);
-    }
-    // Default Operator ||
-    const hasAnswer = answer || 'N.A';
-    console.log(hasAnswer);
   </script>
 </body>
 </html>
