@@ -84,10 +84,10 @@
       
       // DOM Manipulation
       const resultParagraph = document.getElementById('js-result');
-      resultParagraph.innerHTML = result;
       const movesParagraph = document.getElementById('js-moves');
-      movesParagraph.innerHTML = `You picked ${move.toUpperCase()}. - Computer picked ${computerMove.toUpperCase()}`;
       const scoresParagraph = document.getElementById('js-scores');
+      resultParagraph.innerHTML = result;      
+      movesParagraph.innerHTML = `You picked ${move.toUpperCase()}. - Computer picked ${computerMove.toUpperCase()}`;
       scoresParagraph.innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
     }
     

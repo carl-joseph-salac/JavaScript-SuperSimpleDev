@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On key up</title>
+</head>
+<body>  
+  <textarea id="js-main-text-area" onkeyup="autoUpdate()"></textarea>
+  <p id="js-auto-update"></p>
+  
+  <script>
+    function autoUpdate() {
+      const mainTextArea = document.getElementById('js-main-text-area');
+      const autoUpdate = document.getElementById('js-auto-update');
+      autoUpdate.innerHTML = mainTextArea.value;
+    }
+  </script>
+</body>
+</html>

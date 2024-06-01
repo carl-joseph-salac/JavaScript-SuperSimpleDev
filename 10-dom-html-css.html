@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM with CSS</title>
+    <style>
+      .light-mode {
+        font-weight: bold;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: black;
+        color: white;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dark-mode {
+        background-color: white;
+        color: black;
+      }
+
+      .black {
+        background-color: black;
+      }
+    </style>
+  </head>
+
+  <body>  
+    <button id="js-main-btn" class="light-mode" onclick="changeButton()">Dark Mode</button>
+    
+    <script>
+      function changeButton() {
+        const mainButton = document.getElementById('js-main-btn');    
+        if (mainButton.classList.contains('dark-mode')) {
+          mainButton.innerHTML = 'Dark Mode';
+          mainButton.classList.remove('dark-mode'); //add class name
+          document.body.classList.remove('black');
+        } else {
+          mainButton.innerHTML = 'Light Mode';
+          mainButton.classList.add('dark-mode'); // remove class name
+          document.body.classList.add('black');
+        }
+        // check the element contains a class name
+        const check = mainButton.classList.contains('light-mode');
+        console.log(check);
+      }  
+    </script>
+  </body>
+</html>
