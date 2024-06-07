@@ -94,3 +94,18 @@ function diplayResult(){
   const scoresParagraph = document.getElementById('js-scores');
   scoresParagraph.innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 }
+
+let intervalId;
+function autoPlay(){
+  const autoPlayBtn = document.querySelector('.js-auto-play-btn');   
+  if (autoPlayBtn.textContent === 'Auto Play'){
+    autoPlayBtn.textContent = 'Stop Play';
+    intervalId = setInterval(function(){
+      const computerMe = computerMoves();
+      playGame(computerMe);
+    }, 1000);
+  } else if (autoPlayBtn.textContent === 'Stop Play') {
+    autoPlayBtn.textContent = 'Auto Play';  
+    clearInterval(intervalId);
+  }
+}

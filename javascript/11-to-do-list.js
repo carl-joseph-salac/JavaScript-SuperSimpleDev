@@ -27,7 +27,7 @@ function addToDo(){
 function renderTodo(){
   const mainDiv = document.querySelector('.js-main-div');
   let toDoHTML = '';  
-  for (let i = 0; i < toDos.length; i++) {
+  /* for (let i = 0; i < toDos.length; i++) { // using for loop
     const todoObject = toDos[i];
     const { name, date } = todoObject; // destructuring    
       toDoHTML += `
@@ -35,7 +35,15 @@ function renderTodo(){
       <div>${date}</div>      
       <button onclick="deleteToDo(${i})">Delete</button>       
     `;               
-  }
+  } */
+  toDos.forEach(function(todoObject, i){ // using foreach loop  
+    const { name, date } = todoObject; // destructuring    
+      toDoHTML += `
+      <div>${name}</div>      
+      <div>${date}</div>      
+      <button onclick="deleteToDo(${i})">Delete</button>       
+    `;               
+  });
   mainDiv.innerHTML = toDoHTML;        
 }
 
