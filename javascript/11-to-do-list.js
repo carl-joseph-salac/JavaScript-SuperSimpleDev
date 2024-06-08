@@ -5,13 +5,21 @@ if (toDos){ // only call the function if toDos variable has truthy value
   renderTodo();
 }
 
+const addBtn = document.querySelector('.js-add-btn');
+addBtn.addEventListener('click', () => addToDo());
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter'){
+    enter();
+  }
+})
+
 function addToDo(){        
   const mainInput = document.querySelector('.js-main-input');
   const mainDate = document.querySelector('.js-main-date');
   const name = mainInput.value;
   const date = mainDate.value; 
   
-  if (name && date){ // to avoid putting undefined value
+  if (name && date){ // to avoid adding todo without value
     toDos.push({name, date}); // shorthand property
     // put toDos in local storage
     localStorage.setItem('toDos', JSON.stringify(toDos));              
@@ -36,15 +44,19 @@ function renderTodo(){
       <button onclick="deleteToDo(${i})">Delete</button>       
     `;               
   } */
-  toDos.forEach(function(todoObject, i){ // using foreach loop  
+  toDos.forEach((todoObject, i) => { // using foreach loop  
     const { name, date } = todoObject; // destructuring    
       toDoHTML += `
       <div>${name}</div>      
       <div>${date}</div>      
-      <button onclick="deleteToDo(${i})">Delete</button>       
+      <button class="js-delete-btn">Delete</button>       
     `;               
   });
-  mainDiv.innerHTML = toDoHTML;        
+  mainDiv.innerHTML = toDoHTML;
+  const deleteBtns = document.querySelectorAll('.js-delete-btn');
+  deleteBtns.forEach((deleteBtn, index) => {
+    deleteBtn.addEventListener('click', () => deleteToDo(index));
+  });
 }
 
 function deleteToDo(index) {

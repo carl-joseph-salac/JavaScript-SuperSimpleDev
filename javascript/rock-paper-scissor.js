@@ -14,6 +14,32 @@ let score = JSON.parse(localStorage.getItem('score')) ||
 // always display the scores even when the page is reload
 diplayResult();
 
+// eventListeners
+const rockBtn = document.querySelector('.js-rock-btn');
+const paperBtn = document.querySelector('.js-paper-btn');
+const scissorsBtn = document.querySelector('.js-scissors-btn');
+const resetBtn = document.querySelector('.js-reset-btn');
+const autoPlayBtn = document.querySelector('.js-auto-play-btn');
+
+rockBtn.addEventListener('click', () =>  playGame('rock'));
+paperBtn.addEventListener('click', () =>  playGame('paper'));
+scissorsBtn.addEventListener('click', () =>  playGame('scissors'));
+resetBtn.addEventListener('click', () =>  resetScore());
+autoPlayBtn.addEventListener('click', () =>  autoPlay());
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'r'){
+    playGame('rock');
+  } else if (event.key === 'p'){
+    playGame('paper');
+  } else if (event.key == 's'){
+    playGame('scissors');
+  } else if (event.key === 'Delete'){
+    resetScore();
+  } else if (event.key === 'Enter'){
+    autoPlay();
+  }
+});
+
 function computerMoves(){
   let computerMove = ''; // best practice to keep variable inside a scope
   const randomNumber = Math.random();      
@@ -100,7 +126,7 @@ function autoPlay(){
   const autoPlayBtn = document.querySelector('.js-auto-play-btn');   
   if (autoPlayBtn.textContent === 'Auto Play'){
     autoPlayBtn.textContent = 'Stop Play';
-    intervalId = setInterval(function(){
+    intervalId = setInterval(() => {
       const computerMe = computerMoves();
       playGame(computerMe);
     }, 1000);
