@@ -1,0 +1,21 @@
+.light-mode {
+  font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.dark-mode {
+  background-color: white;
+  color: black;
+}
+
+.black {
+  background-color: black;
+}
